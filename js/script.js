@@ -14,6 +14,7 @@ const loadData = () => {
   apiURL = `http://ergast.com/api/f1/${selectedSeason}/driverStandings.json`;
   $.getJSON(apiURL, ( data ) => {
     dataTableBody = $('#dataTableBody');
+    dataTableBody.empty();
     data.MRData.StandingsTable.StandingsLists[0].DriverStandings.forEach( item => {
       
       // destructure driver object for simplicity
