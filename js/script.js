@@ -13,6 +13,8 @@ const loadData = () => {
   selectedSeason = $('#seasonSelected').val();
   apiURL = `http://ergast.com/api/f1/${selectedSeason}/driverStandings.json`;
   $.getJSON(apiURL, ( data ) => {
+    $('#introText').hide();
+    $('#dataTable').removeClass('d-none');
     dataTableBody = $('#dataTableBody');
     dataTableBody.empty();
     data.MRData.StandingsTable.StandingsLists[0].DriverStandings.forEach( item => {
@@ -20,7 +22,7 @@ const loadData = () => {
       // destructure driver object for simplicity
       let { familyName, givenName, nationality, url } = item.Driver;
       
-      driverTableRow = `
+      let driverTableRow = `
         <tr>
           <td>${item.position}</td>
           <td><a href="${url}">${givenName} ${familyName}</a></td>
